@@ -33,6 +33,10 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in" />
 
+        <h2>Sign In</h2>
+        <p>Enter your email and password to login</p>
+
+
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
@@ -44,7 +48,7 @@ const submit = () => {
                 <TextInput
                     id="email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="form-control"
                     v-model="form.email"
                     required
                     autofocus
@@ -60,7 +64,7 @@ const submit = () => {
                 <TextInput
                     id="password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="form-control"
                     v-model="form.password"
                     required
                     autocomplete="current-password"
@@ -85,7 +89,7 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="ml-4 btn btn-primary" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>
             </div>
