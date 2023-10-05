@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('coin:generate-sell-dates')->everyMinute();
+        $schedule->command('coin:update-coin-values')->days(5);
     }
 
     /**
