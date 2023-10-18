@@ -17,7 +17,7 @@
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead
 </head>
-<body class="font-sans antialiased {{ auth()->check() ? "":"form"  }}">
+<body class="{{ auth()->check() ? "layout-boxed":"form"  }}">
     <!-- BEGIN LOADER -->
     <div id="load_screen">
         <div class="loader">
