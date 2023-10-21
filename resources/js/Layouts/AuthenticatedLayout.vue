@@ -2,7 +2,6 @@
   @import '../../layouts/modern-dark-menu/css/dark/loader.css';
   @import '../../layouts/modern-dark-menu/css/dark/plugins.css';
   @import '../../src/bootstrap/css/bootstrap.min.css';
-  @import '../../src/plugins/src/apex/apexcharts.css';
   @import '../../src/assets/css/dark/dashboard/dash_1.css';
 </style>
 
@@ -15,7 +14,6 @@ import 'perfect-scrollbar'
 import '../../src/plugins/src/mousetrap/mousetrap.min.js';
 import '../../layouts/modern-dark-menu/app.js';
 
-import '../../src/plugins/src/apex/apexcharts.min.js'
 import '../../src/assets/js/dashboard/dash_1.js';
 import NavBar from "@/Components/NavBar.vue";
 import SideBar from "@/Components/SideBar.vue";

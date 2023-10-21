@@ -57,7 +57,7 @@ const user = computed(() => page.props.auth.user)
                     </a>
                     <ul class="collapse submenu list-unstyled show" id="dashboard" data-bs-parent="#accordionExample">
                         <li class="active">
-                            <a href="index-2.html"> Analytics </a>
+                            <a href="index-2.html"> My Dashboard </a>
                         </li>
                     </ul>
                 </li>
@@ -81,7 +81,8 @@ const user = computed(() => page.props.auth.user)
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6,20h12c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2H6C4.9,4,4,4.9,4,6v12C4,19.1,4.9,20,6,20z"/>
                                 <path fill="currentColor" d="M12,4c-3.3,0-6,2.7-6,6c0,3.3,2.7,6,6,6s6-2.7,6-6C18,6.7,15.3,4,12,4z M12,14c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S14.2,14,12,14z"/>
-                            </svg>                           <span>My Wallet</span>
+                            </svg>   
+                            <span>My Wallet</span>
                         </div>
                     </a>
                 </li>

@@ -22,8 +22,7 @@ class Transaction extends Model
         'payment_method',
         'payment_reference',
         'payment_proof',
-        'payment_pr
-        oof_type',
+        'payment_proof_type',
     ];
 
     protected array $allowedFilters = [
