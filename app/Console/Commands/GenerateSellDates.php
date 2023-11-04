@@ -14,7 +14,12 @@ class GenerateSellDates extends Command
 
     public function handle(): void
     {
-        // Logic to generate sell dates
+        // Logic to generate sell dates starting with today
+        $sellDate = Carbon::now();
+        SellDate::create([
+            'sell_date' => $sellDate,
+        ]);
+
         $sellDate = Carbon::now()->addDays(5); // Initial sell date
         // store the generated sell date in the database
         SellDate::create([

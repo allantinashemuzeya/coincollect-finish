@@ -35,11 +35,11 @@ class CoinEditScreen extends Screen
     {
         $coin_types = CoinType::all();
         $c_types = [];
-        $role = Role::where('slug', 'posers')->first();
+        $role = Role::where('slug', 'client')->first();
         $users = $role->getUsers();
-        $posers = [];
-        foreach ($users as $poser) {
-            $posers[$poser->id] = $poser->name;
+        $clients = [];
+        foreach ($users as $client) {
+            $clients[$client->id] = $client->name;
         }
 
         foreach ($coin_types as $coin_type) {
@@ -49,7 +49,7 @@ class CoinEditScreen extends Screen
         return [
             'coin'       => $coin,
             'coin_types' => $c_types,
-            'posers'     => $posers,
+            'clients'     => $clients,
         ];
     }
 

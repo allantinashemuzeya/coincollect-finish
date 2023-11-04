@@ -75,4 +75,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Referral::class);
     }
+
+    public function client(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Client::class);
+    }
+
+    public function coins(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Coin::class);
+    }
 }

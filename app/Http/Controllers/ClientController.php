@@ -1,4 +1,6 @@
-<?php
+<?php /** @noinspection PhpUndefinedMethodInspection */
+
+/** @noinspection PhpPossiblePolymorphicInvocationInspection */
 
 namespace App\Http\Controllers;
 
@@ -7,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Orchid\Platform\Models\Role;
 
 class ClientController extends Controller
 {
@@ -30,6 +33,16 @@ class ClientController extends Controller
             'Swift_code' => $request->Swift_code,
             'desired_payment_methods' => $request->desired_payment_methods,
         ]);
+
+        self::setClientRole();
+
         return redirect()->route('dashboard');
+    }
+
+    private static function setClientRole(): void
+    {
+        $user = auth()->user();
+        $role = Role::where('slug', 'client')->first();
+        $user->addRole($role);
     }
 }

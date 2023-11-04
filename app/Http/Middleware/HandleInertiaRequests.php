@@ -30,6 +30,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        //current route
         return [
             ...parent::share($request),
             'auth' => [
@@ -39,6 +40,7 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            'current_route' => $request->route()->getName() ?? '',
         ];
     }
 }

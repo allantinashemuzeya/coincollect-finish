@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MarketPlaceController;
 use App\Http\Controllers\ProfileController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Application;
@@ -24,6 +25,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'dashboardView'])->middleware(['auth', 'verified', 'is_admin'])->name('dashboard');
+
+Route::get('/market-place', [MarketPlaceController::class, 'marketPlaceView'])->middleware(['auth', 'verified'])->name('market-place');
+Route::post('/confirm-purchase', [MarketPlaceController::class, 'confirmPurchase'])->middleware(['auth', 'verified'])->name('confirm-purchase');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

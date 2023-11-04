@@ -19,6 +19,7 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "mousetrap": "^1.6.5",
         "perfect-scrollbar": "^1.5.5",
         "waves": "^0.1.1"
     }

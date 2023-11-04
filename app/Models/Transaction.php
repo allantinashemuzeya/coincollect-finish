@@ -17,6 +17,7 @@ class Transaction extends Model
     protected $fillable = [
         'client_id',
         'coin_id',
+        'sell_date_id',
         'amount',
         'status',
         'payment_method',

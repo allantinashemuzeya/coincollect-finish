@@ -7,6 +7,9 @@ import {computed} from "vue";
 const page = usePage()
 const user = computed(() => page.props.auth.user)
 const user_coins = computed(() => page.props.user_coins)
+const total_balance = computed(() => page.props.total_balance)
+const total_pending_balance = computed(() => page.props.pending_balance)
+
 </script>
 
 <template>
@@ -15,71 +18,51 @@ const user_coins = computed(() => page.props.user_coins)
     <AuthenticatedLayout>
 
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-            <div class="widget widget-card-four">
-                <div class="widget-content">
-                    <div class="w-header">
-                        <div class="w-info">
-                            <h6 class="value">My Wallet</h6>
-                        </div>
-                        <div class="task-action">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" id="expenses" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                </a>
-
-                                <div class="dropdown-menu left" aria-labelledby="expenses" style="will-change: transform;">
-                                    <a class="dropdown-item" href="javascript:void(0);">This Week</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Last Week</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="w-content">
-                        <div class="w-info">
-                            <p class="value">R 10,141 <span>this week</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></p>
-                        </div>
-
-                    </div>
-
-                    <div class="w-progress-stats">
-                        <div class="progress">
-                            <div class="progress-bar bg-gradient-secondary" role="progressbar" style="width: 57%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-
-                        <div class="">
-                            <div class="w-icon">
-                                <p>57%</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
             <div class="widget widget-card-five">
                 <div class="widget-content">
                     <div class="account-box">
 
                         <div class="info-box">
                             <div class="icon">
-                                                <span>
-                                                    <img src="../../src/assets/img/money-bag.png" alt="money-bag">
-                                                </span>
+                                <span>
+                                    <img src="../../src/assets/img/money-bag.png" alt="money-bag">
+                                </span>
                             </div>
 
                             <div class="balance-info">
                                 <h6>Total Balance</h6>
-                                <p>R41,741.42</p>
+                                <p>R{{total_balance}}.00</p>
                             </div>
                         </div>
 
                         <div class="card-bottom-section">
-                            <div><span class="badge badge-light-success">+ 13.6% <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></span></div>
-                            <a href="javascript:void(0);" class="">View Report</a>
+                            <a onclick="alert('coming sooon')" class="">View Transactions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+            <div class="widget widget-card-five">
+                <div class="widget-content">
+                    <div class="account-box">
+
+                        <div class="info-box">
+                            <div class="icon">
+                                <span>
+                                    <img src="../../src/assets/img/money-bag.png" alt="money-bag">
+                                </span>
+                            </div>
+
+                            <div class="balance-info">
+                                <h6>Total Pending Balance</h6>
+                                <p>R{{total_pending_balance}}.00</p>
+                            </div>
+                        </div>
+
+                        <div class="card-bottom-section">
+                            <a onclick="alert('coming sooon')" class="">View to confirm transactions</a>
                         </div>
                     </div>
                 </div>
@@ -110,77 +93,6 @@ const user_coins = computed(() => page.props.user_coins)
             </div>
         </div> -->
 
-
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-            <div class="widget-four">
-                <div class="widget-heading">
-                    <h5 class="">My Coins</h5>
-                </div>
-                <div class="widget-content">
-                    <div class="vistorsBrowser">
-                        <div class="browser-list">
-                            <div class="w-icon">
-                                <svg height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle style="fill:#FFDC64;" cx="256" cy="256" r="158.897"></circle> <circle style="fill:#FFC850;" cx="256" cy="256" r="132.414"></circle> <circle style="fill:#FFF082;" cx="256" cy="256" r="114.759"></circle> <g> <path style="fill:#D5DCED;" d="M487.362,146.276c-2.087-4.401-7.353-6.28-11.758-4.185c-4.405,2.091-6.284,7.358-4.19,11.763 c15.215,32.034,22.931,66.4,22.931,102.146c0,131.423-106.922,238.345-238.345,238.345c-68.546,0-132.167-28.702-177.378-79.245 l24.516,8.172c4.655,1.556,9.63-0.961,11.164-5.582c1.543-4.625-0.957-9.625-5.578-11.168l-52.966-17.655 c-2.897-0.966-6.094-0.366-8.448,1.599c-2.354,1.956-3.518,4.995-3.086,8.025l8.828,61.793c0.629,4.401,4.405,7.577,8.733,7.577 c0.414,0,0.836-0.03,1.259-0.09c4.828-0.69,8.181-5.16,7.491-9.987l-4.299-30.08C114.741,481.478,182.749,512,256,512 c141.155,0,256-114.84,256-256C512,217.617,503.706,180.698,487.362,146.276z"></path> <path style="fill:#D5DCED;" d="M17.655,256C17.655,124.577,124.577,17.655,256,17.655c68.382,0,132.223,28.726,177.462,79.273 l-24.599-8.2c-4.672-1.556-9.621,0.957-11.164,5.582s0.957,9.625,5.578,11.168l52.966,17.655c0.914,0.306,1.854,0.452,2.793,0.452 c2.035,0,4.043-0.707,5.655-2.051c2.354-1.956,3.518-4.995,3.086-8.025l-8.828-61.793c-0.69-4.823-5.155-8.185-9.992-7.487 c-4.828,0.69-8.181,5.16-7.491,9.987l4.291,30.023C397.219,30.524,329.031,0,256,0C114.845,0,0,114.84,0,256 c0,38.383,8.294,75.302,24.638,109.725c1.508,3.181,4.681,5.038,7.982,5.038c1.267,0,2.552-0.271,3.776-0.853 c4.405-2.091,6.284-7.358,4.19-11.763C25.37,326.112,17.655,291.746,17.655,256z"></path> </g> <path style="fill:#E1A546;" d="M264.828,249.417v-45.682c15.593,2.281,26.483,10.227,26.483,17.506c0,4.875,3.948,8.828,8.828,8.828 c4.879,0,8.828-3.953,8.828-8.828c0-18.061-18.795-32.57-44.138-35.345v-9.345c0-4.875-3.948-8.828-8.828-8.828 c-4.879,0-8.828,3.953-8.828,8.828v9.345c-25.343,2.775-44.138,17.283-44.138,35.345c0,25.638,24.566,35.372,44.138,41.342v45.682 c-15.593-2.281-26.483-10.227-26.483-17.506c0-4.875-3.948-8.828-8.828-8.828c-4.879,0-8.828,3.953-8.828,8.828 c0,18.061,18.795,32.57,44.138,35.345v9.345c0,4.875,3.948,8.828,8.828,8.828c4.879,0,8.828-3.953,8.828-8.828v-9.345 c25.343-2.775,44.138-17.283,44.138-35.345C308.966,265.121,284.399,255.386,264.828,249.417z M220.69,221.241 c0-7.279,10.89-15.225,26.483-17.506v40.209C227.484,237.193,220.69,231.093,220.69,221.241z M264.828,308.265v-40.209 c19.689,6.751,26.483,12.851,26.483,22.702C291.31,298.038,280.42,305.984,264.828,308.265z"></path> </g></svg>                            </div>
-                            <div class="w-browser-details">
-                                <div class="w-browser-info">
-                                    <h6>Bronze</h6>
-                                    <p class="browser-count">65%</p>
-                                </div>
-                                <div class="w-browser-stats">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 65%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="browser-list">
-                            <div class="w-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-compass"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-                            </div>
-                            <div class="w-browser-details">
-
-                                <div class="w-browser-info">
-                                    <h6>Silver</h6>
-                                    <p class="browser-count">25%</p>
-                                </div>
-
-                                <div class="w-browser-stats">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 35%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="browser-list">
-                            <div class="w-icon">
-                                <svg height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle style="fill:#FFDC64;" cx="256" cy="256" r="158.897"></circle> <circle style="fill:#FFC850;" cx="256" cy="256" r="132.414"></circle> <circle style="fill:#FFF082;" cx="256" cy="256" r="114.759"></circle> <g> <path style="fill:#D5DCED;" d="M487.362,146.276c-2.087-4.401-7.353-6.28-11.758-4.185c-4.405,2.091-6.284,7.358-4.19,11.763 c15.215,32.034,22.931,66.4,22.931,102.146c0,131.423-106.922,238.345-238.345,238.345c-68.546,0-132.167-28.702-177.378-79.245 l24.516,8.172c4.655,1.556,9.63-0.961,11.164-5.582c1.543-4.625-0.957-9.625-5.578-11.168l-52.966-17.655 c-2.897-0.966-6.094-0.366-8.448,1.599c-2.354,1.956-3.518,4.995-3.086,8.025l8.828,61.793c0.629,4.401,4.405,7.577,8.733,7.577 c0.414,0,0.836-0.03,1.259-0.09c4.828-0.69,8.181-5.16,7.491-9.987l-4.299-30.08C114.741,481.478,182.749,512,256,512 c141.155,0,256-114.84,256-256C512,217.617,503.706,180.698,487.362,146.276z"></path> <path style="fill:#D5DCED;" d="M17.655,256C17.655,124.577,124.577,17.655,256,17.655c68.382,0,132.223,28.726,177.462,79.273 l-24.599-8.2c-4.672-1.556-9.621,0.957-11.164,5.582s0.957,9.625,5.578,11.168l52.966,17.655c0.914,0.306,1.854,0.452,2.793,0.452 c2.035,0,4.043-0.707,5.655-2.051c2.354-1.956,3.518-4.995,3.086-8.025l-8.828-61.793c-0.69-4.823-5.155-8.185-9.992-7.487 c-4.828,0.69-8.181,5.16-7.491,9.987l4.291,30.023C397.219,30.524,329.031,0,256,0C114.845,0,0,114.84,0,256 c0,38.383,8.294,75.302,24.638,109.725c1.508,3.181,4.681,5.038,7.982,5.038c1.267,0,2.552-0.271,3.776-0.853 c4.405-2.091,6.284-7.358,4.19-11.763C25.37,326.112,17.655,291.746,17.655,256z"></path> </g> <path style="fill:#E1A546;" d="M264.828,249.417v-45.682c15.593,2.281,26.483,10.227,26.483,17.506c0,4.875,3.948,8.828,8.828,8.828 c4.879,0,8.828-3.953,8.828-8.828c0-18.061-18.795-32.57-44.138-35.345v-9.345c0-4.875-3.948-8.828-8.828-8.828 c-4.879,0-8.828,3.953-8.828,8.828v9.345c-25.343,2.775-44.138,17.283-44.138,35.345c0,25.638,24.566,35.372,44.138,41.342v45.682 c-15.593-2.281-26.483-10.227-26.483-17.506c0-4.875-3.948-8.828-8.828-8.828c-4.879,0-8.828,3.953-8.828,8.828 c0,18.061,18.795,32.57,44.138,35.345v9.345c0,4.875,3.948,8.828,8.828,8.828c4.879,0,8.828-3.953,8.828-8.828v-9.345 c25.343-2.775,44.138-17.283,44.138-35.345C308.966,265.121,284.399,255.386,264.828,249.417z M220.69,221.241 c0-7.279,10.89-15.225,26.483-17.506v40.209C227.484,237.193,220.69,231.093,220.69,221.241z M264.828,308.265v-40.209 c19.689,6.751,26.483,12.851,26.483,22.702C291.31,298.038,280.42,305.984,264.828,308.265z"></path> </g></svg>
-                            </div>
-                            <div class="w-browser-details">
-
-                                <div class="w-browser-info">
-                                    <h6>Platinum</h6>
-                                    <p class="browser-count">15%</p>
-                                </div>
-
-                                <div class="w-browser-stats">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="row widget-statistic">
@@ -234,6 +146,108 @@ const user_coins = computed(() => page.props.user_coins)
                 </div>
             </div>
         </div>
+
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+            <div class="widget-four">
+                <div class="widget-heading">
+                    <h5 class="">My Coins</h5>
+                </div>
+
+                <h6 v-if="user_coins.length === 0" class="text-center mt-56 text-danger">You have not bought any coins yet</h6>
+
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4" v-for="user_coin in user_coins" :key="user_coin.id">
+                    <a class="card style-6 coin-card" data-bs-toggle="modal" :data-bs-target="`#coinModal_${user_coin.id}`">
+                        <span class="badge badge-primary">NEW</span>
+                        <img src="../../src/assets/img/solana_coin.jpeg" class="card-img-top" alt="...">
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <b>{{user_coin.coin_name}}</b>
+                                    <p class="ownedBy">Owned by: {{user.name}}</p>
+                                </div>
+                                <div class="col-3">
+                                    <div class="badge--group">
+                                        <div class="badge badge-primary badge-dot"></div>
+                                        <div class="badge badge-danger badge-dot"></div>
+                                        <div class="badge badge-info badge-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="col-9 text-end">
+                                    <div class="pricing d-flex justify-content-end">
+                                        <p class="text-success mb-0">R{{user_coin.coin_value}}.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="modal fade" :id="`coinModal_${user_coin.id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="card style-4">
+                                    <div class="card-body pt-3">
+                                        <div class="media mt-0 mb-3">
+                                            <div class="">
+                                                <div class="avatar avatar-md avatar-indicators avatar-online me-3">
+                                                    <img alt="avatar" src="../../src/assets/img/solana_coin.jpeg" class="rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <b class="text-white coin-name-modal">{{user_coin.coin_name}}</b>
+                                                <h4 class="media-heading mb-0">{{user.name}}</h4>
+                                                <p class="media-text">Trader</p>
+                                            </div>
+                                        </div>
+                                        <p class="card-text mt-4 mb-0">
+                                            <!--                                        nicely show the bank details -->
+                                            <b>Bank Details</b>
+                                            <br>
+                                            <b>Bank Name:</b> {{user.client.bank_name}}
+                                            <br>
+                                            <b>Account Number:</b> {{user.client.account_number}}
+                                            <br>
+                                            <b>Account Type:</b> {{user.client.account_type}}
+                                            <br>
+                                            <b>Phone Number:</b> {{user.client.phone_number}}
+                                            <br>
+
+                                        </p>
+                                    </div>
+                                    <div class="card-footer pt-0 border-0 text-center">
+                                        <div class="alert alert-light-warning fade show border-0 mb-4" role="alert">
+                                            Clicking the confirm coin purchase button confirms that you have sent money to the seller of this coin.
+                                            Please make sure that you have sent the money to the seller before clicking the confirm coin purchase button.
+                                        </div>
+
+                                        <form @submit.prevent="">
+                                            <div class="mb-3">
+                                                <label for="formFile" class="form-label">Proof of Payment</label>
+                                                <input class="form-control" type="file" id="formFile" v-on:change="handleFileChange">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="formFile" class="form-label">I have paid using </label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected >Open this select menu</option>
+                                                    <option value="eft">EFT</option>
+                                                    <option value="cash">Cash</option>
+                                                    <option value="ewallet">Card</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-secondary w-100">
+                                                <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Home"></g> <g id="Print"></g> <g id="Mail"></g> <g id="Camera"></g> <g id="Video"></g> <g id="Film"></g> <g id="Message"></g> <g id="Telephone"></g> <g id="User"></g> <g id="File"></g> <g id="Folder"></g> <g id="Map"></g> <g id="Download"></g> <g id="Upload"></g> <g id="Video_Recorder"></g> <g id="Schedule"></g> <g id="Cart"></g> <g id="Setting"></g> <g id="Search"></g> <g id="Pencils"></g> <g id="Group"></g> <g id="Record"></g> <g id="Headphone"></g> <g id="Music_Player"></g> <g id="Sound_On"></g> <g id="Sound_Off"></g> <g id="Lock"></g> <g id="Lock_open"></g> <g id="Love"></g> <g id="Favorite"></g> <g id="Film_1_"></g> <g id="Music"></g> <g id="Puzzle"></g> <g id="Turn_Off"></g> <g id="Book"></g> <g id="Save"></g> <g id="Reload"></g> <g id="Trash"></g> <g id="Tag"></g> <g id="Link"></g> <g id="Like"></g> <g id="Bad"></g> <g id="Gallery"></g> <g id="Add"></g> <g id="Close"></g> <g id="Forward"></g> <g id="Back"></g> <g id="Buy"> <path d="M28,9h-3V8c0-3.9-3.1-7-7-7h-2h-2c-3.9,0-7,3.1-7,7v1H4c-1.7,0-3,1.3-3,3v16c0,1.6,1.3,3,3,3h12h12 c1.7,0,3-1.4,3-3V12C31,10.3,29.7,9,28,9z M23,9h-7H9V8c0-2.8,2.2-5,5-5h2h2c2.8,0,5,2.2,5,5V9z" fill="#FFC10A"></path> <path d="M18,1h-2h-2c-3.9,0-7,3.1-7,7v8c0,0.5,0.5,1,1,1s1-0.5,1-1V8c0-2.8,2.2-5,5-5h2h2c2.8,0,5,2.2,5,5v8 c0,0.5,0.5,1,1,1s1-0.5,1-1V8C25,4.1,21.9,1,18,1z" fill="#673AB7"></path> </g> <g id="Mac"></g> <g id="Laptop"></g> </g></svg>
+                                                <span class="btn-text-inner ms-3">Confirm Coin Purchase</span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
 
 
     </AuthenticatedLayout>
