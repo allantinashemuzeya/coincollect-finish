@@ -35,8 +35,16 @@ class CoinEditScreen extends Screen
     {
         $coin_types = CoinType::all();
         $c_types = [];
-        $role = Role::where('slug', 'client')->first();
-        $users = $role->getUsers();
+        $client_role = Role::where('slug', 'client')
+            ->first();
+        $admin_role = Role::where('slug', 'platform-admins')
+            ->first();
+
+        $users = $client_role->getUsers();
+        $admin_users = $admin_role->getUsers();
+
+        $users = $users->merge($admin_users);
+
         $clients = [];
         foreach ($users as $client) {
             $clients[$client->id] = $client->name;

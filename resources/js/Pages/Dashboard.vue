@@ -9,6 +9,20 @@ const user = computed(() => page.props.auth.user)
 const user_coins = computed(() => page.props.user_coins)
 const total_balance = computed(() => page.props.total_balance)
 const total_pending_balance = computed(() => page.props.pending_balance)
+const referral_link = computed(() => page.props.referral_link)
+
+
+//method to copy the referral link to the clipboard
+const copyReferralLink = () => {
+    const textArea = document.createElement("textarea");
+    textArea.value = referral_link.value;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    alert('Referral link copied to clipboard');
+};
+
 
 </script>
 
@@ -17,7 +31,7 @@ const total_pending_balance = computed(() => page.props.pending_balance)
 
     <AuthenticatedLayout>
 
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 layout-spacing">
             <div class="widget widget-card-five">
                 <div class="widget-content">
                     <div class="account-box">
@@ -43,7 +57,7 @@ const total_pending_balance = computed(() => page.props.pending_balance)
             </div>
         </div>
 
-      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 layout-spacing">
             <div class="widget widget-card-five">
                 <div class="widget-content">
                     <div class="account-box">
@@ -69,84 +83,29 @@ const total_pending_balance = computed(() => page.props.pending_balance)
             </div>
         </div>
 
-        <!-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-            <div class="widget widget-card-three">
-                <div class="widget-content">
-                    <div class="account-box">
-                        <div class="info">
-                            <div class="inv-title">
-                                <h5 class="">Total Balance</h5>
-                            </div>
-                            <div class="inv-balance-info">
-                                <p class="inv-balance">$ 41,741.42</p>
-                                <span class="inv-stats balance-credited">+ 2453</span>
-                            </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+            <div class="widget widget-one_hybrid widget-referral">
+                <div class="widget-heading">
+                    <div class="w-title">
+                        <div class="w-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                         </div>
-                        <div class="acc-action">
-                            <div class="">
-                                <a href="javascript:void(0);" class="btn-wallet"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
-                            </div>
-                            <a href="javascript:void(0);" class="btn-add-balance">Add Balance</a>
+                        <div class="">
+                            <p class="w-value">{{user.referral.use_count}}</p>
+                            <h5 class="">Referrals</h5>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div> -->
 
-
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="row widget-statistic">
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-                    <div class="widget widget-one_hybrid widget-followers">
-                        <div class="widget-heading">
-                            <div class="w-title">
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                </div>
-                                <div class="">
-                                    <p class="w-value">31.6K</p>
-                                    <h5 class="">Followers</h5>
-                                </div>
-                            </div>
+                    <div class="widget-content" style="font-size:12px;margin-left:16px;">
+                        <div class="w-content">
+                            <p class="mb-0">Referral Link: <b style="color:#2196f3;cursor:pointer;" v-on:click="copyReferralLink">{{referral_link}}</b></p>
+                            <p class="mt-3.5 text-success">After 5 people have used your referral code you will receive a coin.</p>
+                            <span class="badge badge-primary mb-2 mt-2" v-on:click="copyReferralLink">Copy</span>
                         </div>
-
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-                    <div class="widget widget-one_hybrid widget-referral">
-                        <div class="widget-heading">
-                            <div class="w-title">
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                                </div>
-                                <div class="">
-                                    <p class="w-value">1,900</p>
-                                    <h5 class="">Referral</h5>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-                    <div class="widget widget-one_hybrid widget-engagement">
-                        <div class="widget-heading">
-                            <div class="w-title">
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                </div>
-                                <div class="">
-                                    <p class="w-value">18.2%</p>
-                                    <h5 class="">Engagement</h5>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="widget-four">
@@ -155,96 +114,34 @@ const total_pending_balance = computed(() => page.props.pending_balance)
                 </div>
 
                 <h6 v-if="user_coins.length === 0" class="text-center mt-56 text-danger">You have not bought any coins yet</h6>
-
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4" v-for="user_coin in user_coins" :key="user_coin.id">
-                    <a class="card style-6 coin-card" data-bs-toggle="modal" :data-bs-target="`#coinModal_${user_coin.id}`">
-                        <span class="badge badge-primary">NEW</span>
-                        <img src="../../src/assets/img/solana_coin.jpeg" class="card-img-top" alt="...">
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-12 mb-4">
-                                    <b>{{user_coin.coin_name}}</b>
-                                    <p class="ownedBy">Owned by: {{user.name}}</p>
-                                </div>
-                                <div class="col-3">
-                                    <div class="badge--group">
-                                        <div class="badge badge-primary badge-dot"></div>
-                                        <div class="badge badge-danger badge-dot"></div>
-                                        <div class="badge badge-info badge-dot"></div>
-                                    </div>
-                                </div>
-                                <div class="col-9 text-end">
-                                    <div class="pricing d-flex justify-content-end">
-                                        <p class="text-success mb-0">R{{user_coin.coin_value}}.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="modal fade" :id="`coinModal_${user_coin.id}`" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="card style-4">
-                                    <div class="card-body pt-3">
-                                        <div class="media mt-0 mb-3">
-                                            <div class="">
-                                                <div class="avatar avatar-md avatar-indicators avatar-online me-3">
-                                                    <img alt="avatar" src="../../src/assets/img/solana_coin.jpeg" class="rounded-circle">
-                                                </div>
-                                            </div>
-                                            <div class="media-body">
-                                                <b class="text-white coin-name-modal">{{user_coin.coin_name}}</b>
-                                                <h4 class="media-heading mb-0">{{user.name}}</h4>
-                                                <p class="media-text">Trader</p>
-                                            </div>
-                                        </div>
-                                        <p class="card-text mt-4 mb-0">
-                                            <!--                                        nicely show the bank details -->
-                                            <b>Bank Details</b>
-                                            <br>
-                                            <b>Bank Name:</b> {{user.client.bank_name}}
-                                            <br>
-                                            <b>Account Number:</b> {{user.client.account_number}}
-                                            <br>
-                                            <b>Account Type:</b> {{user.client.account_type}}
-                                            <br>
-                                            <b>Phone Number:</b> {{user.client.phone_number}}
-                                            <br>
-
-                                        </p>
-                                    </div>
-                                    <div class="card-footer pt-0 border-0 text-center">
-                                        <div class="alert alert-light-warning fade show border-0 mb-4" role="alert">
-                                            Clicking the confirm coin purchase button confirms that you have sent money to the seller of this coin.
-                                            Please make sure that you have sent the money to the seller before clicking the confirm coin purchase button.
-                                        </div>
-
-                                        <form @submit.prevent="">
-                                            <div class="mb-3">
-                                                <label for="formFile" class="form-label">Proof of Payment</label>
-                                                <input class="form-control" type="file" id="formFile" v-on:change="handleFileChange">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFile" class="form-label">I have paid using </label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected >Open this select menu</option>
-                                                    <option value="eft">EFT</option>
-                                                    <option value="cash">Cash</option>
-                                                    <option value="ewallet">Card</option>
-                                                </select>
-                                            </div>
-                                            <button type="submit" class="btn btn-secondary w-100">
-                                                <svg viewBox="0 0 24 24" enable-background="new 0 0 24 24" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Home"></g> <g id="Print"></g> <g id="Mail"></g> <g id="Camera"></g> <g id="Video"></g> <g id="Film"></g> <g id="Message"></g> <g id="Telephone"></g> <g id="User"></g> <g id="File"></g> <g id="Folder"></g> <g id="Map"></g> <g id="Download"></g> <g id="Upload"></g> <g id="Video_Recorder"></g> <g id="Schedule"></g> <g id="Cart"></g> <g id="Setting"></g> <g id="Search"></g> <g id="Pencils"></g> <g id="Group"></g> <g id="Record"></g> <g id="Headphone"></g> <g id="Music_Player"></g> <g id="Sound_On"></g> <g id="Sound_Off"></g> <g id="Lock"></g> <g id="Lock_open"></g> <g id="Love"></g> <g id="Favorite"></g> <g id="Film_1_"></g> <g id="Music"></g> <g id="Puzzle"></g> <g id="Turn_Off"></g> <g id="Book"></g> <g id="Save"></g> <g id="Reload"></g> <g id="Trash"></g> <g id="Tag"></g> <g id="Link"></g> <g id="Like"></g> <g id="Bad"></g> <g id="Gallery"></g> <g id="Add"></g> <g id="Close"></g> <g id="Forward"></g> <g id="Back"></g> <g id="Buy"> <path d="M28,9h-3V8c0-3.9-3.1-7-7-7h-2h-2c-3.9,0-7,3.1-7,7v1H4c-1.7,0-3,1.3-3,3v16c0,1.6,1.3,3,3,3h12h12 c1.7,0,3-1.4,3-3V12C31,10.3,29.7,9,28,9z M23,9h-7H9V8c0-2.8,2.2-5,5-5h2h2c2.8,0,5,2.2,5,5V9z" fill="#FFC10A"></path> <path d="M18,1h-2h-2c-3.9,0-7,3.1-7,7v8c0,0.5,0.5,1,1,1s1-0.5,1-1V8c0-2.8,2.2-5,5-5h2h2c2.8,0,5,2.2,5,5v8 c0,0.5,0.5,1,1,1s1-0.5,1-1V8C25,4.1,21.9,1,18,1z" fill="#673AB7"></path> </g> <g id="Mac"></g> <g id="Laptop"></g> </g></svg>
-                                                <span class="btn-text-inner ms-3">Confirm Coin Purchase</span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="row">
+                  <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4" v-for="user_coin in user_coins" :key="user_coin.id">
+                      <a class="card style-6 coin-card" data-bs-toggle="modal" :data-bs-target="`#coinModal_${user_coin.id}`">
+                          <span class="badge badge-primary">YOURS</span>
+                          <img src="../../src/assets/img/solana_coin.jpeg" class="card-img-top" alt="...">
+                          <div class="card-footer">
+                              <div class="row">
+                                  <div class="col-12 mb-4">
+                                      <b>{{user_coin.coin_name}}</b>
+                                      <p class="ownedBy">Owned by: {{user.name}}</p>
+                                  </div>
+                                  <div class="col-3">
+                                      <div class="badge--group">
+                                          <div class="badge badge-primary badge-dot"></div>
+                                          <div class="badge badge-danger badge-dot"></div>
+                                          <div class="badge badge-info badge-dot"></div>
+                                      </div>
+                                  </div>
+                                  <div class="col-9 text-end">
+                                      <div class="pricing d-flex justify-content-end">
+                                          <p class="text-success mb-0">R{{user_coin.coin_value}}.00</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
                 </div>
-
             </div>
         </div>
 

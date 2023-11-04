@@ -34,11 +34,15 @@ class DashboardController extends Controller
             $pending_balance += $transaction->amount;
         }
 
+        $referral_link = config('app.url').'/register?referral_code='.
+            auth()->user()->referral->referral_code;
+
         return Inertia::render('Dashboard', [
             'user_coins' => $user_coins,
             'pending_transaction_coins' => $pending_transaction_coins,
             'total_balance' => $total_coin_value,
-            'pending_balance' => $pending_balance
+            'pending_balance' => $pending_balance,
+            'referral_link' => $referral_link,
         ]);
     }
 }

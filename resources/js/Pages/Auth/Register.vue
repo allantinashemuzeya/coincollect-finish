@@ -4,12 +4,15 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import {Head, Link, useForm, usePage} from '@inertiajs/vue3';
 
+const page = usePage();
+const referral_code = page.props.referral_code;
 const form = useForm({
     name: '',
     email: '',
     password: '',
+    referral_code: referral_code,
     password_confirmation: '',
 });
 
@@ -96,6 +99,21 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
+
+            <div class="mt-4">
+                <InputLabel for="referral_code" value="Referral" />
+
+                <TextInput
+                    id="referral_code"
+                    type="text"
+                    class="form-control"
+                    v-model="form.referral_code"
+                    disabled="disabled"
+                />
+
+                <InputError class="mt-2" :message="form.errors.referral_code" />
+            </div>
+
 
             <div class="col-12">
                 <div class="mt-4">

@@ -14,9 +14,11 @@ return new class extends Migration
         //
         Schema::create('referrals', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('referral_code');
-            $table->uuid('user_id');
             $table->uuid('referrer_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('use_count')->default(0);
+            $table->string('referral_code');
+
             $table->timestamps();
         });
 
