@@ -22,17 +22,6 @@ class CreateClient
      */
     public function handle(Registered $event): void
     {
-//        'phone_number',
-//        'address',
-//        'country',
-//        'bank_name',
-//        'account_number',
-//        'account_name',
-//        'account_type',
-//        'Swift_code',
-//        'desired_reference',
-//        'desired_payment_methods',
-        // Create client for new user
         Client::create([
             'user_id' => $event->user->id,
             'name' => $event->user->name,

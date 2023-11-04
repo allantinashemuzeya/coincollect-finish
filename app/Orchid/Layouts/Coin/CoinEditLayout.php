@@ -19,7 +19,7 @@ class CoinEditLayout extends Rows
     protected function fields(): iterable
     {
        $coin_types =  $this->query->get('coin_types');
-       $posers     =  $this->query->get('posers');
+       $clients     =  $this->query->get('clients');
         return [
             Input::make('coin.coin_name')
                 ->type('text')
@@ -35,7 +35,7 @@ class CoinEditLayout extends Rows
                 ->help('Select Coin Type'),
 
             Select::make('coin.user_id')
-                ->options($posers)
+                ->options($clients)
                 ->title('Select Coin Owner ')
                 ->help('Select Coin Owner'),
 

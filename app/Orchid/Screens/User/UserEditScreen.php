@@ -8,6 +8,7 @@ use App\Orchid\Layouts\Role\RolePermissionLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserPasswordLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -38,9 +39,22 @@ class UserEditScreen extends Screen
     {
         $user->load(['roles']);
 
+        //check if there is a client with this user id
+        $client = Client::where('user_id', $user->id)->first();
+
+        if($client){
+            $user->bank_name = $client->bank_name;
+            $user->account_name = $client->account_name;
+            $user->account_number = $client->account_number;
+            $user->account_type = $client->account_type;
+            $user->phone_number = $client->phone_number;
+            $user->desired_reference = $client->desired_reference;
+        }
+
         return [
             'user'       => $user,
             'permission' => $user->getStatusPermission(),
+            'roles'      => $user->getRoles(),
         ];
     }
 
@@ -152,12 +166,23 @@ class UserEditScreen extends Screen
      */
     public function save(User $user, Request $request)
     {
-        $request->validate([
+        $rules = [
             'user.email' => [
                 'required',
                 Rule::unique(User::class, 'email')->ignore($user),
             ],
-        ]);
+        ];
+
+        if($user->inRole('posers')){
+            $rules['user.bank_name'] = ['required'];
+            $rules['user.account_name'] = ['required'];
+            $rules['user.account_number'] = ['required'];
+            $rules['user.account_type'] = ['required'];
+            $rules['user.phone_number'] = ['required'];
+            $rules['user.desired_reference'] = ['required'];
+        }
+
+        $request->validate($rules);
 
         $permissions = collect($request->get('permissions'))
             ->map(fn ($value, $key) => [base64_decode($key) => $value])
@@ -168,12 +193,39 @@ class UserEditScreen extends Screen
             $builder->getModel()->password = Hash::make($request->input('user.password'));
         });
 
+        $except = [
+            'password',
+            'permissions',
+            'roles',
+            'bank_name',
+            'account_name',
+            'account_number',
+            'account_type',
+            'phone_number',
+            'desired_reference',
+        ];
+
         $user
-            ->fill($request->collect('user')->except(['password', 'permissions', 'roles'])->toArray())
+            ->fill($request->collect('user')->except($except)->toArray())
             ->fill(['permissions' => $permissions])
             ->save();
 
         $user->replaceRoles($request->input('user.roles'));
+
+        if($user->inRole('posers')){
+            //create or update client
+            $client = Client::updateOrCreate([
+                'user_id' => $user->id,
+                'phone_number' => $request->user['phone_number'],
+                'account_number' => $request->user['account_number'],
+                'account_name' => $request->user['account_name'],
+                'account_type' => $request->user['account_type'],
+                'address' => 'NONE',
+                'bank_name' => $request->user['bank_name'],
+                'desired_reference' => $request->user['desired_reference'],
+            ]);
+            $client->save();
+        }
 
         Toast::info(__('User was saved.'));
 

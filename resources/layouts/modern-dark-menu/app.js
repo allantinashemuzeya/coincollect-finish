@@ -248,24 +248,13 @@ var App = function() {
 
             if (document.querySelector('.menu-categories')) {
             
-                const ps = new PerfectScrollbar('.menu-categories', {
-                    wheelSpeed:.5,
-                    swipeEasing:!0,
-                    minScrollbarLength:40,
-                    maxScrollbarLength:300
-                });
+            
 
             }
         },
         notificationScroll: function() {
 
             if (document.querySelector('.notification-scroll')) {
-                const notificationS = new PerfectScrollbar('.notification-scroll', {
-                    wheelSpeed:.5,
-                    swipeEasing:!0,
-                    minScrollbarLength:40,
-                    maxScrollbarLength:300
-                });
             }
             
         },
@@ -319,7 +308,7 @@ var App = function() {
             }
         },
         MaterialRippleEffect: function() {
-            getAllBtn = document.querySelectorAll('button.btn, a.btn');
+           let getAllBtn = document.querySelectorAll('button.btn, a.btn');
             
             getAllBtn.forEach(btn => {
     
@@ -399,10 +388,10 @@ var App = function() {
 
                 if (!document.querySelector('body').classList.contains('alt-menu')) {
 
-                    Dom.id.container.classList.remove("sidebar-closed");
-                    Dom.class.navbar.classList.remove("expand-header");
-                    Dom.class.overlay.classList.remove('show');
-                    Dom.id.container.classList.remove('sbar-open');
+                   // Dom.id.container.classList.remove("sidebar-closed");
+                   // Dom.class.navbar.classList.remove("expand-header");
+                    //Dom.class.overlay.classList.remove('show');
+                   // Dom.id.container.classList.remove('sbar-open');
                     Dom.main.classList.remove('sidebar-noneoverflow');
                 } else {
                     Dom.main.classList.add('sidebar-noneoverflow');

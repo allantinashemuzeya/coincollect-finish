@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('coin:generate-sell-dates')->everyMinute();
         $schedule->command('coin:update-coin-values')->days(5);
+        $schedule->command('coin:referral-coin-grant')->daily();
     }
 
     /**

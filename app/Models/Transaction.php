@@ -17,13 +17,13 @@ class Transaction extends Model
     protected $fillable = [
         'client_id',
         'coin_id',
+        'sell_date_id',
         'amount',
         'status',
         'payment_method',
         'payment_reference',
         'payment_proof',
-        'payment_pr
-        oof_type',
+        'payment_proof_type',
     ];
 
     protected array $allowedFilters = [

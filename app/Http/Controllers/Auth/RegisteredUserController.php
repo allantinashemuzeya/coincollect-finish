@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Referral;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -22,7 +23,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        $referralCode = request()->get('referral_code');
+        return Inertia::render('Auth/Register', [
+            'referral_code' => $referralCode ? $referralCode : '',
+        ]);
     }
 
     /**
@@ -43,6 +47,22 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        if ($request->referral_code !== '') {
+            $reference = Referral::where('referral_code', $request->referral_code)->first();
+            if ($reference) {
+                $reference->use_count = $reference->use_count   + 1;
+                $reference->save();
+            }
+
+            $referralCode = $user->name[0].$user->name[1] . rand(10000, 99999);
+
+            Referral::create([
+                'referrer_id' => $user->id,
+                'user_id' => $user->id,
+                'referral_code' => $referralCode,
+            ]);
+        }
 
         event(new Registered($user));
 

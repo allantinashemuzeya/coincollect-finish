@@ -18,6 +18,7 @@ class Referral extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'referrer_id',
         'referral_code',
    ];
