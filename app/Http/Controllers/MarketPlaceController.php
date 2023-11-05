@@ -25,7 +25,6 @@ class MarketPlaceController extends Controller
             $market_coins[] = $coin;
         }
 
-        //lets only have coins that are not in the transaction table with a pending status
         $transactions = Transaction::where('status','pending')->get();
         $transaction_coins = [];
         foreach ($transactions as $transaction){
@@ -44,11 +43,7 @@ class MarketPlaceController extends Controller
     {
         //create new transaction
         $this->createTransaction($request);
-        //notify coin owner
-        //remove coin from market place
-        //show coin in purchaser pending purchases
-        //show coin in seller pending purchases
-
+        return redirect()->route('dashboard')->with('success','Transaction created successfully');
     }
 
     private function createTransaction(Request $request)
