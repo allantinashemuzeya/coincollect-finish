@@ -40,8 +40,8 @@ class CoinEditScreen extends Screen
         $admin_role = Role::where('slug', 'platform-admins')
             ->first();
 
-        $users = $client_role->getUsers();
-        $admin_users = $admin_role->getUsers();
+        $users = $client_role?->getUsers();
+        $admin_users = $admin_role?->getUsers();
 
         $users = $users->merge($admin_users);
 
