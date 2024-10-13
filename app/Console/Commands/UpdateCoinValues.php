@@ -35,7 +35,7 @@ class UpdateCoinValues extends Command
             foreach ($sellDates as $sellDate) {
                 if ($today->isSameDay($sellDate->sell_date)) {
                     $coin->update([
-                        'value' => $coin->value + ($coin->value * rand(10, 30) / 100),
+                        'value' => $coin->value + ($coin->value * $coin->growthRate()),
                     ]);
                 }
             }
