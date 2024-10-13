@@ -46,7 +46,7 @@ class MarketPlaceController extends Controller
         return redirect()->route('dashboard')->with('success','Transaction created successfully');
     }
 
-    private function createTransaction(Request $request)
+    private function createTransaction(Request $request): void
     {
         $purchaser_uid = auth()->user()->id;
 
