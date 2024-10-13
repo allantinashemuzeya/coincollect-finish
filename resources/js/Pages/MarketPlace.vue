@@ -120,7 +120,7 @@ const submit = (coin_id) => {
                                     <form @submit.prevent="submit(market_coin.id)">
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label">Proof of Payment</label>
-                                            <input class="form-control" type="file" id="formFile" v-on:change="handleFileChange">
+                                            <input class="form-control" type="file" id="formFile" required v-on:change="handleFileChange">
                                         </div>
                                       <div class="mb-3">
                                         <label for="formFile" class="form-label">I have paid using </label>
