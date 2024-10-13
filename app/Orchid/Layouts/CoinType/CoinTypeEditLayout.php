@@ -47,6 +47,13 @@ class CoinTypeEditLayout extends Rows
                 ->placeholder(__('Minimum Price'))
                 ->help(__('Coin type display name')),
 
+            Input::make('coinType.max_price')
+                ->type('text')
+                ->max(255)
+                ->required()
+                ->title(__('Maximum Price'))
+                ->placeholder(__('Maximum Price'))
+                ->help(__('The maximum price of the coin type before it upgrades to higher value coin')),
 
         ];
     }

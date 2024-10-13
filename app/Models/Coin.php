@@ -29,7 +29,6 @@ class Coin extends Model
         'user_id',
         'coin_name',
         'coin_value',
-        'coin_total_supply',
         'coin_data',
     ];
 
@@ -45,7 +44,6 @@ class Coin extends Model
         'coin_name' => Like::class,
         'user_id' => Where::class,
         'coin_value' => Where::class,
-        'coin_total_supply' => Where::class,
         'created_at' => Where::class,
         'updated_at' => Where::class,
     ];
@@ -94,8 +92,8 @@ class Coin extends Model
     public function calculateNewValue()
     {
         // Assuming $this->price represents the price when the coin was bought
-        $newPrice = $this->price * 1.30; // 30% increase
+        // 30% increase
 
-        return $newPrice;
+        return $this->price * 1.30;
     }
 }

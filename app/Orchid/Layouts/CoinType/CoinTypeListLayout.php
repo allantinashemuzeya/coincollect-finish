@@ -51,20 +51,19 @@ class CoinTypeListLayout extends Table
                     return $coinType->growth_rate;
                 }),
 
-            TD::make('market_cap', 'Market Cap')
+            TD::make('max_price', 'Maximum Price')
                 ->sort()
                 ->cantHide()
                 ->align(TD::ALIGN_CENTER)
                 ->filter(Input::make())
                 ->render(function (CoinType $coinType){
-                    return $coinType->market_cap;
+                    return $coinType->max_price;
                 }),
 
             TD::make('created_at', __('Created'))
                 ->usingComponent(DateTimeSplit::class)
                 ->align(TD::ALIGN_CENTER)
                 ->sort(),
-
 
         ];
     }

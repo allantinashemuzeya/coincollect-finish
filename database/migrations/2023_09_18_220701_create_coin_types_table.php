@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->float('min_price')->default(0);
             $table->float('growth_rate')->default(30.0);
-            $table->float('market_cap')->default(0);
+            $table->float('max_price')->default(0);
             $table->float('total_supply')->default(0);
             $table->json('data')->nullable();
             $table->timestamps();

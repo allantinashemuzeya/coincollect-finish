@@ -27,7 +27,7 @@ class CoinType extends Model
     protected $fillable = [
         'name',
         'min_price',
-        'market_cap',
+        'max_price',
         'total_supply',
         'growth_rate',
     ];
@@ -37,7 +37,7 @@ class CoinType extends Model
         'name' => Like::class,
         'min_price' => Where::class,
         'growth_rate' => Where::class,
-        'market_cap' => Where::class,
+        'max_price' => Where::class,
         'total_supply' => Where::class,
         'created_at' => Where::class,
         'updated_at' => Where::class,

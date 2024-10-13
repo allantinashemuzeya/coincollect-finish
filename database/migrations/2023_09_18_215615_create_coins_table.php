@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignUuid('user_id');
             $table->foreignUuid('coin_type_id');
             $table->float('coin_value')->default(0);
-            $table->float('coin_total_supply')->default(0);
             $table->json('coin_data')->nullable();
             $table->timestamps();
         });

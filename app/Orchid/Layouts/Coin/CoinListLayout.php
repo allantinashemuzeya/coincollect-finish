@@ -43,10 +43,9 @@ class CoinListLayout extends Table
             TD::make('coin_type_id', 'Coin Type')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
+                ->filter()
                 ->align(TD::ALIGN_CENTER)
                 ->render(function ($coin) {
-
                     return $coin->coinType?->name;
                 }),
 
